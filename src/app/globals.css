@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-red: #C8102E;
+  --color-navy: #1A3A6B;
+  --color-navy-dark: #0D1B3E;
+  --color-white: #FFFFFF;
+  --color-body: #1A1A1A;
+  --color-meta: #555555;
+  --color-divider: #DDDDDD;
+  --color-score-bg: #D6E4F0;
+}
+
+html,
+body {
+  background-color: var(--color-white);
+  color: var(--color-body);
+}
+
+body {
+  font-family: 'Barlow', system-ui, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.chevron-bounce {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}

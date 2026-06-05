@@ -1,0 +1,21 @@
+import player from './player'
+import fixture from './fixture'
+import heroSlide from './heroSlide'
+import siteSettings from './siteSettings'
+import instagramPost from './instagramPost'
+import sponsor from './sponsor'
+import ourClubImages from './ourClubImages'
+import aboutStrip from './aboutStrip'
+import ourClubContent from './ourClubContent'
+
+export const schemaTypes = [
+  player,
+  fixture,
+  heroSlide,
+  siteSettings,
+  instagramPost,
+  sponsor,
+  ourClubImages,
+  aboutStrip,
+  ourClubContent,
+]
