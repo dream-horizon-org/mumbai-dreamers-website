@@ -11,6 +11,21 @@ export interface Player {
   bio?: string
 }
 
+export interface Sponsor {
+  _id: string
+  name?: string
+  active?: boolean
+  order?: number
+}
+
+export interface Fixture {
+  _id: string
+  team?: string
+  homeTeam?: string
+  awayTeam?: string
+  date?: string
+}
+
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
 

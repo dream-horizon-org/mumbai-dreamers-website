@@ -1,4 +1,4 @@
-import { client, type Player } from './sanity'
+import { client, type Player, type Sponsor, type Fixture } from './sanity'
 
 export const HERO_SLIDES_QUERY = `
   *[_type == "heroSlide"] | order(order asc) {
@@ -202,8 +202,8 @@ export async function getInstagramPosts() {
 
 export async function getActiveSponsors() {
   try {
-    const sponsors = await client.fetch(SPONSORS_QUERY)
-    return sponsors.filter((s) => s.active)
+    const sponsors = await client.fetch<Sponsor[]>(SPONSORS_QUERY)
+    return sponsors.filter((s: Sponsor) => s.active)
   } catch (error) {
     console.error('Error fetching sponsors:', error)
     return []
@@ -212,8 +212,8 @@ export async function getActiveSponsors() {
 
 export async function getMensFixtures() {
   try {
-    const fixtures = await client.fetch(FIXTURES_QUERY)
-    return fixtures.filter((f) => f.team === 'mens')
+    const fixtures = await client.fetch<Fixture[]>(FIXTURES_QUERY)
+    return fixtures.filter((f: Fixture) => f.team === 'mens')
   } catch (error) {
     console.error('Error fetching mens fixtures:', error)
     return []
@@ -222,8 +222,8 @@ export async function getMensFixtures() {
 
 export async function getWomensFixtures() {
   try {
-    const fixtures = await client.fetch(FIXTURES_QUERY)
-    return fixtures.filter((f) => f.team === 'womens')
+    const fixtures = await client.fetch<Fixture[]>(FIXTURES_QUERY)
+    return fixtures.filter((f: Fixture) => f.team === 'womens')
   } catch (error) {
     console.error('Error fetching womens fixtures:', error)
     return []
