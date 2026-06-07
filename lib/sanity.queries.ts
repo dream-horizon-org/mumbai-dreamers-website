@@ -164,8 +164,8 @@ export async function getOurClubContent() {
 
 export async function getMensPlayers() {
   try {
-    const players = await client.fetch(PLAYERS_QUERY)
-    return players.filter((p) => p.team === 'mens')
+    const players = await client.fetch<Player[]>(PLAYERS_QUERY)
+    return players.filter((p: Player) => p.team === 'mens')
   } catch (error) {
     console.error('Error fetching mens players:', error)
     return []
@@ -174,8 +174,8 @@ export async function getMensPlayers() {
 
 export async function getWomensPlayers() {
   try {
-    const players = await client.fetch(PLAYERS_QUERY)
-    return players.filter((p) => p.team === 'womens')
+    const players = await client.fetch<Player[]>(PLAYERS_QUERY)
+    return players.filter((p: Player) => p.team === 'womens')
   } catch (error) {
     console.error('Error fetching womens players:', error)
     return []
