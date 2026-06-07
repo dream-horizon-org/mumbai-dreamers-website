@@ -1,4 +1,4 @@
-import { client } from './sanity'
+import { client, type Player } from './sanity'
 
 export const HERO_SLIDES_QUERY = `
   *[_type == "heroSlide"] | order(order asc) {

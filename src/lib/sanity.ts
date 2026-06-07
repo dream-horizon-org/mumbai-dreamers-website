@@ -11,6 +11,16 @@ export interface SanityImage {
   crop?: { top: number; bottom: number; left: number; right: number }
 }
 
+export interface Player {
+  _id: string
+  name?: string
+  number?: number
+  position?: string
+  team?: string
+  photo?: SanityImage
+  bio?: string
+}
+
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
