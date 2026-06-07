@@ -14,7 +14,7 @@ interface SectionCoachingLeadershipProps {
     coachingCtaText?: string;
     coachingCtaLink?: string;
     coachingPhoto?: SanityImage;
-  };
+  } | null;
   coachingPhoto?: SanityImage;
 }
 

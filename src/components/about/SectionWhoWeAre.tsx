@@ -11,7 +11,7 @@ interface SectionWhoWeAreProps {
     whoWeAreTitle?: string;
     whoWeAreDescription?: string;
     whoWeArePhoto?: SanityImage;
-  };
+  } | null;
   whoWeArePhoto?: SanityImage;
 }
 

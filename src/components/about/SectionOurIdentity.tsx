@@ -7,7 +7,7 @@ interface SectionOurIdentityProps {
     identityHeading?: string;
     identityTitle?: string;
     identityDescription?: string;
-  };
+  } | null;
 }
 
 export default function SectionOurIdentity({ content }: SectionOurIdentityProps) {

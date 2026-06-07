@@ -32,7 +32,7 @@ interface SectionVisionProps {
     visionHeading?: string;
     visionTitle?: string;
     visionDescription?: string;
-  };
+  } | null;
 }
 
 export default function SectionVision({ content }: SectionVisionProps) {

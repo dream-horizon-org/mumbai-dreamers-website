@@ -12,7 +12,7 @@ interface SectionOurPlayersProps {
     playersTitle?: string;
     playersDescription?: string;
     playersPhoto?: SanityImage;
-  };
+  } | null;
   playersPhoto?: SanityImage;
 }
 
