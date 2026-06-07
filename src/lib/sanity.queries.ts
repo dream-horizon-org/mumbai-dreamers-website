@@ -80,6 +80,29 @@ export interface SiteSettings {
   seasonPhase: 'pre_season' | 'in_season' | 'post_season'
 }
 
+export interface OurClubContent {
+  whoWeAreHeading?: string
+  whoWeAreTitle?: string
+  whoWeAreDescription?: string
+  whoWeArePhoto?: SanityImage
+  identityHeading?: string
+  identityTitle?: string
+  identityDescription?: string
+  coachingHeading?: string
+  coachingTitle?: string
+  coachingDescription?: string
+  coachingCtaText?: string
+  coachingCtaLink?: string
+  coachingPhoto?: SanityImage
+  playersHeading?: string
+  playersTitle?: string
+  playersDescription?: string
+  playersPhoto?: SanityImage
+  visionHeading?: string
+  visionTitle?: string
+  visionDescription?: string
+}
+
 // ─── Static-data adapters (used as fallback when Sanity isn't yet connected) ──
 
 function toSanityPlayer(p: StaticPlayer, team: 'mens' | 'womens', order: number): Player {
@@ -225,5 +248,33 @@ export async function getOurClubImages(): Promise<{
   }>(
     `*[_type == "ourClubImages"][0]{ whoWeArePhoto, coachingPhoto, playersPhoto }`,
     {},
+  )
+}
+
+export async function getOurClubContent(): Promise<OurClubContent | null> {
+  return safeFetch<OurClubContent>(
+    `*[_type == "ourClubContent"][0]{
+      whoWeAreHeading,
+      whoWeAreTitle,
+      whoWeAreDescription,
+      whoWeArePhoto,
+      identityHeading,
+      identityTitle,
+      identityDescription,
+      coachingHeading,
+      coachingTitle,
+      coachingDescription,
+      coachingCtaText,
+      coachingCtaLink,
+      coachingPhoto,
+      playersHeading,
+      playersTitle,
+      playersDescription,
+      playersPhoto,
+      visionHeading,
+      visionTitle,
+      visionDescription
+    }`,
+    null,
   )
 }
