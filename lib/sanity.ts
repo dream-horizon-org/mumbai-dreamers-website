@@ -1,6 +1,16 @@
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 
+export interface Player {
+  _id: string
+  name?: string
+  number?: number
+  position?: string
+  team?: string
+  photo?: unknown
+  bio?: string
+}
+
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
 
