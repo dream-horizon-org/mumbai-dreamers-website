@@ -3,7 +3,11 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface SectionOurIdentityProps {
-  content?: any;
+  content?: {
+    identityHeading?: string;
+    identityTitle?: string;
+    identityDescription?: string;
+  };
 }
 
 export default function SectionOurIdentity({ content }: SectionOurIdentityProps) {

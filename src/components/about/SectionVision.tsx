@@ -28,7 +28,11 @@ function DiagonalPattern() {
 }
 
 interface SectionVisionProps {
-  content?: any;
+  content?: {
+    visionHeading?: string;
+    visionTitle?: string;
+    visionDescription?: string;
+  };
 }
 
 export default function SectionVision({ content }: SectionVisionProps) {

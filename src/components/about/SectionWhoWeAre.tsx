@@ -6,7 +6,12 @@ import type { SanityImage } from "@/lib/sanity.queries";
 import { urlFor } from "@/lib/sanity";
 
 interface SectionWhoWeAreProps {
-  content?: any;
+  content?: {
+    whoWeAreHeading?: string;
+    whoWeAreTitle?: string;
+    whoWeAreDescription?: string;
+    whoWeArePhoto?: SanityImage;
+  };
   whoWeArePhoto?: SanityImage;
 }
 

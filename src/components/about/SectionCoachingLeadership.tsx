@@ -7,7 +7,14 @@ import type { SanityImage } from "@/lib/sanity.queries";
 import { urlFor } from "@/lib/sanity";
 
 interface SectionCoachingLeadershipProps {
-  content?: any;
+  content?: {
+    coachingHeading?: string;
+    coachingTitle?: string;
+    coachingDescription?: string;
+    coachingCtaText?: string;
+    coachingCtaLink?: string;
+    coachingPhoto?: SanityImage;
+  };
   coachingPhoto?: SanityImage;
 }
 

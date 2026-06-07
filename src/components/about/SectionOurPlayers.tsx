@@ -7,7 +7,12 @@ import type { SanityImage } from "@/lib/sanity.queries";
 import { urlFor } from "@/lib/sanity";
 
 interface SectionOurPlayersProps {
-  content?: any;
+  content?: {
+    playersHeading?: string;
+    playersTitle?: string;
+    playersDescription?: string;
+    playersPhoto?: SanityImage;
+  };
   playersPhoto?: SanityImage;
 }
 
