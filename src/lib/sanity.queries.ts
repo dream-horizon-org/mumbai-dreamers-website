@@ -37,6 +37,8 @@ export interface Fixture {
   time: string
   teamA: string
   teamB: string
+  teamALogo?: SanityImage
+  teamBLogo?: SanityImage
   scoreA?: number
   scoreB?: number
   highlightUrl?: string
@@ -198,7 +200,11 @@ export async function getWomensPlayers(): Promise<Player[]> {
 
 export async function getMensFixtures(): Promise<Fixture[]> {
   const rows = await safeFetch<Fixture[]>(
-    `*[_type == "fixture" && team == "mens" && visible != false] | order(dateISO asc)`,
+    `*[_type == "fixture" && team == "mens" && visible != false] | order(dateISO asc) {
+      ...,
+      "teamALogo": teamARef->logo,
+      "teamBLogo": teamBRef->logo
+    }`,
     [],
   )
   return rows.length > 0 ? rows : staticMensFixtures.map((f) => toSanityFixture(f, 'mens'))
@@ -206,7 +212,11 @@ export async function getMensFixtures(): Promise<Fixture[]> {
 
 export async function getWomensFixtures(): Promise<Fixture[]> {
   const rows = await safeFetch<Fixture[]>(
-    `*[_type == "fixture" && team == "womens" && visible != false] | order(dateISO asc)`,
+    `*[_type == "fixture" && team == "womens" && visible != false] | order(dateISO asc) {
+      ...,
+      "teamALogo": teamARef->logo,
+      "teamBLogo": teamBRef->logo
+    }`,
     [],
   )
   return rows.length > 0 ? rows : staticWomensFixtures.map((f) => toSanityFixture(f, 'womens'))

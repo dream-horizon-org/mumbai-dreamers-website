@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import RugbyBallToggle from "@/components/squad/RugbyBallToggle";
 import type { Fixture } from "@/lib/sanity.queries";
+import { urlFor } from "@/lib/sanity";
 
 // ─── Utilities ───────────────────────────────────────────────────────────────
 
@@ -316,8 +318,17 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
           </div>
         </div>
 
-        {/* Col 2: Team A — right-aligned */}
-        <div style={{ textAlign: "right", paddingRight: 20 }}>
+        {/* Col 2: Team A — right-aligned, logo left of name */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 10, paddingRight: 20 }}>
+          {fixture.teamALogo && (
+            <Image
+              src={urlFor(fixture.teamALogo).width(64).height(64).url()}
+              alt={fixture.teamA}
+              width={32}
+              height={32}
+              style={{ objectFit: "contain", flexShrink: 0 }}
+            />
+          )}
           <span
             style={{
               fontFamily: "'Barlow', system-ui, sans-serif",
@@ -336,8 +347,8 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
           <ScoreDisplay scoreA={fixture.scoreA} scoreB={fixture.scoreB} />
         </div>
 
-        {/* Col 4: Team B — left-aligned, Mumbai Dreamers in red */}
-        <div style={{ textAlign: "left", paddingLeft: 20 }}>
+        {/* Col 4: Team B — left-aligned, Mumbai Dreamers in red, logo right of name */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start", gap: 10, paddingLeft: 20 }}>
           <span
             style={{
               fontFamily: "'Barlow', system-ui, sans-serif",
@@ -349,6 +360,15 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
           >
             {fixture.teamB}
           </span>
+          {fixture.teamBLogo && (
+            <Image
+              src={urlFor(fixture.teamBLogo).width(64).height(64).url()}
+              alt={fixture.teamB}
+              width={32}
+              height={32}
+              style={{ objectFit: "contain", flexShrink: 0 }}
+            />
+          )}
         </div>
 
         {/* Col 5: Actions — right-aligned */}

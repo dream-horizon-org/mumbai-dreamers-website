@@ -45,13 +45,27 @@ export default defineType({
     }),
     defineField({
       name: 'teamA',
-      title: 'Team A',
+      title: 'Team A Name',
       type: 'string',
     }),
     defineField({
+      name: 'teamARef',
+      title: 'Team A — Logo Source',
+      type: 'reference',
+      to: [{ type: 'team' }],
+      description: 'Link to the Team entry to show their logo on the fixture row.',
+    }),
+    defineField({
       name: 'teamB',
-      title: 'Team B',
+      title: 'Team B Name',
       type: 'string',
+    }),
+    defineField({
+      name: 'teamBRef',
+      title: 'Team B — Logo Source',
+      type: 'reference',
+      to: [{ type: 'team' }],
+      description: 'Link to the Team entry to show their logo on the fixture row.',
     }),
     defineField({
       name: 'scoreA',

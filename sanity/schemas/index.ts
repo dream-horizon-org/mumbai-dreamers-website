@@ -1,5 +1,6 @@
 import player from './player'
 import fixture from './fixture'
+import team from './team'
 import heroSlide from './heroSlide'
 import siteSettings from './siteSettings'
 import instagramPost from './instagramPost'
@@ -11,6 +12,7 @@ import ourClubContent from './ourClubContent'
 export const schemaTypes = [
   player,
   fixture,
+  team,
   heroSlide,
   siteSettings,
   instagramPost,
