@@ -1,10 +1,14 @@
 import Link from "next/link";
 import StaticPlayerGrid from "@/components/squad/StaticPlayerGrid";
-import { mensPlayers, womensPlayers } from "@/lib/data/players";
+import { getMensPlayers, getWomensPlayers } from "@/lib/sanity.queries";
 
 export const metadata = { title: "Full Squad — Mumbai Dreamers" };
 
-export default function AllSquad() {
+export default async function AllSquad() {
+  const [mensPlayers, womensPlayers] = await Promise.all([
+    getMensPlayers(),
+    getWomensPlayers(),
+  ]);
   return (
     <div style={{ backgroundColor: "#FFFFFF", minHeight: "100vh" }}>
       {/* Back button — paddingTop clears accent stripe (3px) + nav (62px) */}

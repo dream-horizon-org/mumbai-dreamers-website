@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import type { Player } from "@/lib/data/players";
+import type { Player } from "@/lib/sanity.queries";
+import { urlFor } from "@/lib/sanity";
 import { GlowCard } from "@/components/ui/SpotlightCard";
+
+const PLACEHOLDER = "/assets/placeholder-player.png";
 
 function FlagOrPlaceholder({ countryCode }: { countryCode: string }) {
   if (!countryCode || countryCode === "tbc") {
@@ -35,6 +38,7 @@ function FlagOrPlaceholder({ countryCode }: { countryCode: string }) {
 }
 
 function StaticPlayerCard({ player }: { player: Player }) {
+  const photoSrc = player.photo ? urlFor(player.photo).width(400).url() : (player.photoUrl || PLACEHOLDER);
   return (
     <div
       style={{
@@ -75,7 +79,7 @@ function StaticPlayerCard({ player }: { player: Player }) {
           }}
         />
         <Image
-          src={player.photoUrl}
+          src={photoSrc}
           alt={player.name}
           fill
           style={{ objectFit: "cover", objectPosition: "top center" }}
@@ -156,7 +160,7 @@ export default function StaticPlayerGrid({ label, players }: StaticPlayerGridPro
       >
         {players.map((p) => (
           <GlowCard
-            key={p.id}
+            key={p._id}
             customSize={true}
             className="!block !p-0 !gap-0 !shadow-none !backdrop-blur-none"
           >
