@@ -278,11 +278,11 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
         borderBottom: "1px solid #DDDDDD",
       }}
     >
-      {/* Grid row */}
+      {/* Grid row — 7 cols: [id] [team A name] [team A logo] [score] [team B logo] [team B name] [actions] */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "120px 1fr 130px 1fr 150px",
+          gridTemplateColumns: "120px 1fr 64px 130px 64px 1fr 150px",
           alignItems: "center",
           padding: "20px 16px",
           backgroundColor: hovered ? "#FAFAFA" : "#FFFFFF",
@@ -318,17 +318,8 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
           </div>
         </div>
 
-        {/* Col 2: Team A — right-aligned, logo left of name */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 10, paddingRight: 20 }}>
-          {fixture.teamALogo && (
-            <Image
-              src={urlFor(fixture.teamALogo).width(64).height(64).url()}
-              alt={fixture.teamA}
-              width={32}
-              height={32}
-              style={{ objectFit: "contain", flexShrink: 0 }}
-            />
-          )}
+        {/* Col 2: Team A name — right-aligned */}
+        <div style={{ textAlign: "right", paddingRight: 12 }}>
           <span
             style={{
               fontFamily: "'Barlow', system-ui, sans-serif",
@@ -342,13 +333,43 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
           </span>
         </div>
 
-        {/* Col 3: Score — centred */}
+        {/* Col 3: Team A logo — centred */}
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          {fixture.teamALogo && (
+            <div style={{ position: "relative", width: 48, height: 44, flexShrink: 0 }}>
+              <Image
+                src={urlFor(fixture.teamALogo).width(120).url()}
+                alt={fixture.teamA}
+                fill
+                style={{ objectFit: "contain" }}
+                sizes="48px"
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Col 4: Score — centred */}
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ScoreDisplay scoreA={fixture.scoreA} scoreB={fixture.scoreB} />
         </div>
 
-        {/* Col 4: Team B — left-aligned, Mumbai Dreamers in red, logo right of name */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start", gap: 10, paddingLeft: 20 }}>
+        {/* Col 5: Team B logo — centred */}
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          {fixture.teamBLogo && (
+            <div style={{ position: "relative", width: 48, height: 44, flexShrink: 0 }}>
+              <Image
+                src={urlFor(fixture.teamBLogo).width(120).url()}
+                alt={fixture.teamB}
+                fill
+                style={{ objectFit: "contain" }}
+                sizes="48px"
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Col 6: Team B name — left-aligned, Mumbai Dreamers in red */}
+        <div style={{ textAlign: "left", paddingLeft: 12 }}>
           <span
             style={{
               fontFamily: "'Barlow', system-ui, sans-serif",
@@ -360,18 +381,9 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
           >
             {fixture.teamB}
           </span>
-          {fixture.teamBLogo && (
-            <Image
-              src={urlFor(fixture.teamBLogo).width(64).height(64).url()}
-              alt={fixture.teamB}
-              width={32}
-              height={32}
-              style={{ objectFit: "contain", flexShrink: 0 }}
-            />
-          )}
         </div>
 
-        {/* Col 5: Actions — right-aligned */}
+        {/* Col 7: Actions — right-aligned */}
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           {isPlayed && fixture.highlightUrl ? (
             <button
