@@ -6,6 +6,7 @@ import {
   getActiveSponsors,
   getMensPlayers,
   getWomensPlayers,
+  getDefaultCtaLabel,
 } from '@/lib/sanity.queries'
 import HeroCarousel from '@/components/home/HeroCarousel'
 import AboutStrip from '@/components/home/AboutStrip'
@@ -36,13 +37,4 @@ export default async function Home() {
       <SponsorsStrip sponsors={sponsors} />
     </>
   )
-}
-
-function getDefaultCtaLabel(seasonPhase: string | null) {
-  const phases = {
-    'pre-season': 'Register Interest',
-    'in-season': 'Buy Tickets',
-    'post-season': 'View Highlights',
-  }
-  return phases[seasonPhase as keyof typeof phases] || 'Learn More'
 }

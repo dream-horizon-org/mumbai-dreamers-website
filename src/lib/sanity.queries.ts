@@ -252,7 +252,7 @@ export async function getOurClubImages(): Promise<{
 }
 
 export async function getOurClubContent(): Promise<OurClubContent | null> {
-  return safeFetch<OurClubContent>(
+  return safeFetch<OurClubContent | null>(
     `*[_type == "ourClubContent"][0]{
       whoWeAreHeading,
       whoWeAreTitle,
