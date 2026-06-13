@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import React from "react";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -59,8 +60,8 @@ function HamburgerIcon({ color }: { color: string }) {
   );
 }
 
-function SponsorPill({ label, scrolled }: { label: string; scrolled: boolean }) {
-  return (
+function SponsorPill({ label, href, scrolled }: { label: string; href?: string; scrolled: boolean }) {
+  const content = (
     <span
       className="flex items-center justify-center font-barlow font-semibold transition-colors duration-300 ease-out"
       style={{
@@ -76,6 +77,22 @@ function SponsorPill({ label, scrolled }: { label: string; scrolled: boolean }) 
       {label}
     </span>
   );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="transition-opacity hover:opacity-80"
+        style={{ transition: "color 0.3s ease-out" }}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return content;
 }
 
 export default function Nav() {
@@ -204,8 +221,7 @@ export default function Nav() {
           />
 
           <div className="flex items-center gap-2">
-            <SponsorPill label="Dream11" scrolled={scrolled} />
-            <SponsorPill label="FanCode" scrolled={scrolled} />
+            <SponsorPill label="Dream Sports" href="https://www.dreamsports.group/" scrolled={scrolled} />
           </div>
         </div>
       </div>
