@@ -8,6 +8,7 @@ import sponsor from './sponsor'
 import ourClubImages from './ourClubImages'
 import aboutStrip from './aboutStrip'
 import ourClubContent from './ourClubContent'
+import standingsEntry from './standingsEntry'
 
 export const schemaTypes = [
   player,
@@ -20,4 +21,5 @@ export const schemaTypes = [
   ourClubImages,
   aboutStrip,
   ourClubContent,
+  standingsEntry,
 ]

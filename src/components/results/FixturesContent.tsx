@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import RugbyBallToggle from "@/components/squad/RugbyBallToggle";
-import type { Fixture } from "@/lib/sanity.queries";
+import type { Fixture, StandingsEntry } from "@/lib/sanity.queries";
 import { urlFor } from "@/lib/sanity";
+import StandingsTable from "@/components/results/StandingsTable";
 
 // ─── Utilities ───────────────────────────────────────────────────────────────
 
@@ -493,9 +494,11 @@ function DateGroup({ date, matches, expandedId, onToggle }: DateGroupProps) {
 interface FixturesContentProps {
   mensFixtures: Fixture[];
   womensFixtures: Fixture[];
+  mensStandings: StandingsEntry[];
+  womensStandings: StandingsEntry[];
 }
 
-export default function FixturesContent({ mensFixtures, womensFixtures }: FixturesContentProps) {
+export default function FixturesContent({ mensFixtures, womensFixtures, mensStandings, womensStandings }: FixturesContentProps) {
   const [activeTeam, setActiveTeam] = useState<"mens" | "womens">("mens");
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -619,6 +622,50 @@ export default function FixturesContent({ mensFixtures, womensFixtures }: Fixtur
             Fixtures will be published closer to the season.
           </p>
         )}
+      </div>
+
+      {/* Standings */}
+      <div
+        style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          paddingLeft: 24,
+          paddingRight: 24,
+          paddingBottom: 72,
+        }}
+      >
+        <div style={{ marginBottom: 24 }}>
+          <span
+            style={{
+              display: "block",
+              fontFamily: "'Barlow', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: 11,
+              color: "#C8102E",
+              textTransform: "uppercase",
+              letterSpacing: "0.2em",
+              marginBottom: 10,
+            }}
+          >
+            RPL SEASON 2
+          </span>
+          <h2
+            style={{
+              fontFamily: "'Barlow Condensed', system-ui, sans-serif",
+              fontWeight: 800,
+              fontSize: 40,
+              color: "#1A3A6B",
+              textTransform: "uppercase",
+              lineHeight: 1,
+              margin: 0,
+            }}
+          >
+            STANDINGS
+          </h2>
+        </div>
+        <StandingsTable
+          entries={activeTeam === "mens" ? mensStandings : womensStandings}
+        />
       </div>
     </div>
   );

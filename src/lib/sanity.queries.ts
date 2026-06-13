@@ -82,6 +82,21 @@ export interface SiteSettings {
   seasonPhase: 'pre_season' | 'in_season' | 'post_season'
 }
 
+export interface StandingsEntry {
+  _id: string
+  position: number
+  teamName: string
+  teamLogo?: SanityImage
+  gender: 'mens' | 'womens'
+  matchesPlayed: number
+  wins: number
+  draws: number
+  losses: number
+  scoreDifference: number
+  bonusPoints: number
+  points: number
+}
+
 export interface OurClubContent {
   whoWeAreHeading?: string
   whoWeAreTitle?: string
@@ -286,5 +301,45 @@ export async function getOurClubContent(): Promise<OurClubContent | null> {
       visionDescription
     }`,
     null,
+  )
+}
+
+export async function getMensStandings(): Promise<StandingsEntry[]> {
+  return safeFetch<StandingsEntry[]>(
+    `*[_type == "standingsEntry" && gender == "mens"] | order(position asc) {
+      _id,
+      position,
+      "teamName": team->name,
+      "teamLogo": team->logo,
+      gender,
+      matchesPlayed,
+      wins,
+      draws,
+      losses,
+      scoreDifference,
+      bonusPoints,
+      points
+    }`,
+    [],
+  )
+}
+
+export async function getWomensStandings(): Promise<StandingsEntry[]> {
+  return safeFetch<StandingsEntry[]>(
+    `*[_type == "standingsEntry" && gender == "womens"] | order(position asc) {
+      _id,
+      position,
+      "teamName": team->name,
+      "teamLogo": team->logo,
+      gender,
+      matchesPlayed,
+      wins,
+      draws,
+      losses,
+      scoreDifference,
+      bonusPoints,
+      points
+    }`,
+    [],
   )
 }
