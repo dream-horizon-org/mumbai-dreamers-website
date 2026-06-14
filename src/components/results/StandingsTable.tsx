@@ -240,7 +240,6 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
               </div>
             );
           })}
-        </div>
       </div>
 
       {/* Desktop version (non-scrollable) */}
