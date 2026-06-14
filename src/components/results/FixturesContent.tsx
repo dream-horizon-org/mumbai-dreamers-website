@@ -283,7 +283,6 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
       <div
         className="hidden lg:grid"
         style={{
-          display: "grid",
           gridTemplateColumns: "120px 1fr 64px 130px 64px 1fr 150px",
           alignItems: "center",
           padding: "20px 16px",
@@ -418,7 +417,7 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
 
       {/* Mobile card layout */}
       <div
-        className="lg:hidden flex flex-col gap-4 p-4 border-b border-gray-200"
+        className="lg:hidden flex flex-col gap-4"
         style={{
           backgroundColor: hovered ? "#FAFAFA" : "#FFFFFF",
           borderBottom: "1px solid #DDDDDD",
