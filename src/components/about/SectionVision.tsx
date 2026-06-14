@@ -61,17 +61,19 @@ export default function SectionVision({ content }: SectionVisionProps) {
   return (
     <section
       aria-label="Our Vision and Dream Big With Us"
-      style={{ display: "flex", minHeight: 360 }}
+      className="flex flex-col lg:flex-row"
+      style={{ minHeight: 360 }}
     >
       {/* Left panel — Navy */}
       <div
+        className="w-full lg:flex-[0_0_50%]"
         style={{
-          flex: "0 0 50%",
           backgroundColor: "#1A3A6B",
           position: "relative",
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
+          minHeight: 300,
         }}
       >
         <DiagonalPattern />
@@ -132,13 +134,14 @@ export default function SectionVision({ content }: SectionVisionProps) {
 
       {/* Right panel — Red */}
       <div
+        className="w-full lg:flex-[0_0_50%]"
         style={{
-          flex: "0 0 50%",
           backgroundColor: "#C8102E",
           position: "relative",
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
+          minHeight: 300,
         }}
       >
         <DiagonalPattern />

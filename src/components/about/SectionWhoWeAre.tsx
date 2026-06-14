@@ -31,17 +31,19 @@ export default function SectionWhoWeAre({ content, whoWeArePhoto }: SectionWhoWe
   return (
     <section
       aria-label="Who We Are"
-      style={{ display: "flex", minHeight: 480 }}
+      className="flex flex-col lg:flex-row"
+      style={{ minHeight: 480 }}
     >
       {/* Left panel — Red */}
       <div
+        className="w-full lg:flex-[0_0_48%]"
         style={{
-          flex: "0 0 48%",
           backgroundColor: "#C8102E",
           position: "relative",
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
+          minHeight: 300,
         }}
       >
         {/* Ghost watermark */}
@@ -128,13 +130,13 @@ export default function SectionWhoWeAre({ content, whoWeArePhoto }: SectionWhoWe
       </div>
 
       {/* Right panel — photography */}
-      <div style={{ flex: "0 0 52%", position: "relative", overflow: "hidden" }}>
+      <div className="w-full lg:flex-[0_0_52%] relative overflow-hidden" style={{ minHeight: 300, position: "relative" }}>
         <Image
           src={imageSrc}
           alt="Mumbai Dreamers team"
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
-          sizes="52vw"
+          sizes="100vw"
         />
       </div>
     </section>

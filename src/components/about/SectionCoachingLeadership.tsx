@@ -35,16 +35,18 @@ export default function SectionCoachingLeadership({ content, coachingPhoto }: Se
   return (
     <section
       aria-label="Coaching Leadership"
-      style={{ display: "flex", minHeight: 480 }}
+      className="flex flex-col lg:flex-row"
+      style={{ minHeight: 480 }}
     >
       {/* Left panel — Navy */}
       <div
+        className="w-full lg:flex-[0_0_46%]"
         style={{
-          flex: "0 0 46%",
           backgroundColor: "#1A3A6B",
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
+          minHeight: 300,
         }}
       >
         <div
@@ -125,13 +127,13 @@ export default function SectionCoachingLeadership({ content, coachingPhoto }: Se
       </div>
 
       {/* Right panel — photography */}
-      <div style={{ flex: "0 0 54%", position: "relative", overflow: "hidden" }}>
+      <div className="w-full lg:flex-[0_0_54%] relative overflow-hidden" style={{ minHeight: 300, position: "relative" }}>
         <Image
           src={imageSrc}
           alt="Mumbai Dreamers coaching staff"
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
-          sizes="54vw"
+          sizes="100vw"
         />
       </div>
     </section>

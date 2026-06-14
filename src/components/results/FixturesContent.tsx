@@ -125,10 +125,10 @@ function ExpandPanel({ fixture, onClose }: { fixture: Fixture; onClose: () => vo
 
   return (
     <div
+      className="flex flex-col lg:flex-row"
       style={{
         backgroundColor: "#1A3A6B",
         padding: 24,
-        display: "flex",
         gap: 24,
         position: "relative",
         alignItems: "flex-start",
@@ -166,8 +166,8 @@ function ExpandPanel({ fixture, onClose }: { fixture: Fixture; onClose: () => vo
         ✕
       </button>
 
-      {/* Left: YouTube embed — 60% width */}
-      <div style={{ flex: "0 0 60%", position: "relative" }}>
+      {/* Left: YouTube embed — 60% width on desktop, full on mobile */}
+      <div className="w-full lg:flex-[0_0_60%]" style={{ position: "relative" }}>
         <div
           style={{
             position: "relative",
@@ -192,8 +192,8 @@ function ExpandPanel({ fixture, onClose }: { fixture: Fixture; onClose: () => vo
         </div>
       </div>
 
-      {/* Right: match meta — 40% width, with extra right padding to clear close button */}
-      <div style={{ flex: "0 0 40%", paddingRight: 48, paddingTop: 4 }}>
+      {/* Right: match meta — 40% width on desktop, full on mobile */}
+      <div className="w-full lg:flex-[0_0_40%]" style={{ paddingRight: 48, paddingTop: 4 }}>
         <span
           style={{
             display: "block",
@@ -279,8 +279,9 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
         borderBottom: "1px solid #DDDDDD",
       }}
     >
-      {/* Grid row — 7 cols: [id] [team A name] [team A logo] [score] [team B logo] [team B name] [actions] */}
+      {/* Desktop: Grid row — 7 cols; Mobile: Card layout */}
       <div
+        className="hidden lg:grid"
         style={{
           display: "grid",
           gridTemplateColumns: "120px 1fr 64px 130px 64px 1fr 150px",
@@ -412,6 +413,100 @@ function MatchRow({ fixture, isExpanded, onToggleExpand }: MatchRowProps) {
           ) : (
             <UpcomingChip />
           )}
+        </div>
+      </div>
+
+      {/* Mobile card layout */}
+      <div
+        className="lg:hidden flex flex-col gap-4 p-4 border-b border-gray-200"
+        style={{
+          backgroundColor: hovered ? "#FAFAFA" : "#FFFFFF",
+          borderBottom: "1px solid #DDDDDD",
+          padding: "16px",
+        }}
+      >
+        {/* Date and time */}
+        <div className="flex justify-between items-start">
+          <div>
+            <div style={{ fontFamily: "'Barlow', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#555555", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              {fixture.matchId}
+            </div>
+            <div style={{ fontFamily: "'Barlow', system-ui, sans-serif", fontWeight: 400, fontSize: 13, color: "#1A1A1A", marginTop: 4 }}>
+              {fixture.time}
+            </div>
+          </div>
+          <div>
+            {isPlayed && fixture.highlightUrl ? (
+              <button
+                onClick={onToggleExpand}
+                style={{
+                  backgroundColor: isExpanded ? "#0A1F45" : "#C8102E",
+                  color: "#FFFFFF",
+                  fontFamily: "'Barlow', system-ui, sans-serif",
+                  fontWeight: 600,
+                  fontSize: 10,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                  padding: "8px 12px",
+                  borderRadius: 0,
+                  border: "none",
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                  transition: "background-color 0.15s ease",
+                }}
+              >
+                ▶ HIGHLIGHTS
+              </button>
+            ) : isPlayed ? (
+              <ResultChip />
+            ) : (
+              <UpcomingChip />
+            )}
+          </div>
+        </div>
+
+        {/* Teams and score */}
+        <div className="flex items-center justify-between gap-3">
+          {/* Team A */}
+          <div className="flex flex-col items-center gap-2 flex-1">
+            <div style={{ position: "relative", width: 40, height: 36, flexShrink: 0 }}>
+              {fixture.teamALogo && (
+                <Image
+                  src={urlFor(fixture.teamALogo).width(100).url()}
+                  alt={fixture.teamA}
+                  fill
+                  style={{ objectFit: "contain" }}
+                  sizes="40px"
+                />
+              )}
+            </div>
+            <div style={{ fontFamily: "'Barlow', system-ui, sans-serif", fontWeight: 600, fontSize: 12, color: "#1A1A1A", textTransform: "uppercase", textAlign: "center", lineHeight: 1.2 }}>
+              {fixture.teamA}
+            </div>
+          </div>
+
+          {/* Score */}
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <ScoreDisplay scoreA={fixture.scoreA} scoreB={fixture.scoreB} />
+          </div>
+
+          {/* Team B */}
+          <div className="flex flex-col items-center gap-2 flex-1">
+            <div style={{ position: "relative", width: 40, height: 36, flexShrink: 0 }}>
+              {fixture.teamBLogo && (
+                <Image
+                  src={urlFor(fixture.teamBLogo).width(100).url()}
+                  alt={fixture.teamB}
+                  fill
+                  style={{ objectFit: "contain" }}
+                  sizes="40px"
+                />
+              )}
+            </div>
+            <div style={{ fontFamily: "'Barlow', system-ui, sans-serif", fontWeight: 600, fontSize: 12, color: fixture.teamB === "Mumbai Dreamers" ? "#C8102E" : "#1A1A1A", textTransform: "uppercase", textAlign: "center", lineHeight: 1.2 }}>
+              {fixture.teamB}
+            </div>
+          </div>
         </div>
       </div>
 
