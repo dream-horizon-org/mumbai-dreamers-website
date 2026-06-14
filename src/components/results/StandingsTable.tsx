@@ -53,6 +53,7 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
               backgroundColor: "#C8102E",
               padding: "14px 16px",
               alignItems: "center",
+              minHeight: 60,
             }}
           >
             <div style={{ ...headerCellBase, textAlign: "left" }}>POS</div>
@@ -88,12 +89,13 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                   display: "grid",
                   gridTemplateColumns: gridColumns,
                   alignItems: "center",
-                  padding: "16px 16px",
+                  padding: "14px 16px",
                   backgroundColor: isMumbai ? "#FFF5F5" : "#FFFFFF",
                   borderLeft: isMumbai
                     ? "3px solid #C8102E"
                     : "3px solid transparent",
                   borderBottom: "1px solid #DDDDDD",
+                  minHeight: 60,
                 }}
               >
                 {/* POS */}
@@ -103,6 +105,9 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                     fontWeight: 700,
                     fontSize: 16,
                     color: "#1A3A6B",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
                   }}
                 >
                   {entry.position}
@@ -115,6 +120,8 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                     flexDirection: "row",
                     gap: 12,
                     alignItems: "center",
+                    justifyContent: "flex-start",
+                    minHeight: 44,
                   }}
                 >
                   {entry.teamLogo ? (
@@ -239,6 +246,7 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
             backgroundColor: "#C8102E",
             padding: "14px 16px",
             alignItems: "center",
+            minHeight: 60,
           }}
         >
           <div style={{ ...headerCellBase, textAlign: "left" }}>POS</div>
@@ -274,12 +282,13 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
               display: "grid",
               gridTemplateColumns: gridColumns,
               alignItems: "center",
-              padding: "16px 16px",
+              padding: "14px 16px",
               backgroundColor: isMumbai ? "#FFF5F5" : "#FFFFFF",
               borderLeft: isMumbai
                 ? "3px solid #C8102E"
                 : "3px solid transparent",
               borderBottom: "1px solid #DDDDDD",
+              minHeight: 60,
             }}
           >
             {/* POS */}
@@ -289,6 +298,9 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                 fontWeight: 700,
                 fontSize: 16,
                 color: "#1A3A6B",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
               }}
             >
               {entry.position}
@@ -301,6 +313,8 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                 flexDirection: "row",
                 gap: 12,
                 alignItems: "center",
+                justifyContent: "flex-start",
+                minHeight: 44,
               }}
             >
               {entry.teamLogo ? (
