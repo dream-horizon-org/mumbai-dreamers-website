@@ -30,6 +30,7 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
   }
 
   const gridColumns = "52px 1fr 80px 110px 80px 80px 80px";
+  const mobileGridColumns = "40px 100px 60px 70px 60px 60px 60px";
 
   const headerCellBase: React.CSSProperties = {
     fontFamily: "'Barlow', system-ui, sans-serif",
@@ -43,26 +44,27 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
   return (
     <div className="lg:border lg:border-gray-300" style={{ border: "1px solid #DDDDDD", overflow: "hidden" }}>
       {/* Mobile scroll wrapper */}
-      <div className="lg:hidden overflow-x-auto">
-        <div style={{ minWidth: "600px" }}>
+      <div className="lg:hidden" style={{ overflowX: "auto", overflowY: "hidden" }}>
           {/* Header row */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: gridColumns,
+              gridTemplateColumns: mobileGridColumns,
               backgroundColor: "#C8102E",
-              padding: "14px 16px",
+              padding: "12px 12px",
               alignItems: "center",
-              minHeight: 60,
+              minHeight: 52,
+              width: "fit-content",
+              minWidth: "100%",
             }}
           >
-            <div style={{ ...headerCellBase, textAlign: "left" }}>POS</div>
-            <div style={{ ...headerCellBase, textAlign: "left" }}>TEAM</div>
-            <div style={{ ...headerCellBase, textAlign: "center" }}>MP</div>
-            <div style={{ ...headerCellBase, textAlign: "center" }}>W-D-L</div>
-            <div style={{ ...headerCellBase, textAlign: "center" }}>SD</div>
-            <div style={{ ...headerCellBase, textAlign: "center" }}>BP</div>
-            <div style={{ ...headerCellBase, textAlign: "center" }}>PT</div>
+            <div style={{ ...headerCellBase, textAlign: "left", fontSize: 9 }}>POS</div>
+            <div style={{ ...headerCellBase, textAlign: "left", fontSize: 9 }}>TEAM</div>
+            <div style={{ ...headerCellBase, textAlign: "center", fontSize: 9 }}>MP</div>
+            <div style={{ ...headerCellBase, textAlign: "center", fontSize: 9 }}>W-D-L</div>
+            <div style={{ ...headerCellBase, textAlign: "center", fontSize: 9 }}>SD</div>
+            <div style={{ ...headerCellBase, textAlign: "center", fontSize: 9 }}>BP</div>
+            <div style={{ ...headerCellBase, textAlign: "center", fontSize: 9 }}>PT</div>
           </div>
 
           {/* Data rows */}
@@ -87,15 +89,17 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                 key={entry._id}
                 style={{
                   display: "grid",
-                  gridTemplateColumns: gridColumns,
+                  gridTemplateColumns: mobileGridColumns,
                   alignItems: "center",
-                  padding: "14px 16px",
+                  padding: "12px 12px",
                   backgroundColor: isMumbai ? "#FFF5F5" : "#FFFFFF",
                   borderLeft: isMumbai
                     ? "3px solid #C8102E"
                     : "3px solid transparent",
                   borderBottom: "1px solid #DDDDDD",
-                  minHeight: 60,
+                  minHeight: 52,
+                  width: "fit-content",
+                  minWidth: "100%",
                 }}
               >
                 {/* POS */}
@@ -103,7 +107,7 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                   style={{
                     fontFamily: "'Barlow Condensed', system-ui, sans-serif",
                     fontWeight: 700,
-                    fontSize: 16,
+                    fontSize: 13,
                     color: "#1A3A6B",
                     display: "flex",
                     alignItems: "center",
@@ -118,18 +122,19 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                   style={{
                     display: "flex",
                     flexDirection: "row",
-                    gap: 12,
+                    gap: 8,
                     alignItems: "center",
                     justifyContent: "flex-start",
-                    minHeight: 44,
+                    minHeight: 40,
+                    overflow: "hidden",
                   }}
                 >
                   {entry.teamLogo ? (
                     <div
                       style={{
                         position: "relative",
-                        width: 40,
-                        height: 36,
+                        width: 32,
+                        height: 28,
                         flexShrink: 0,
                       }}
                     >
@@ -144,8 +149,8 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                   ) : (
                     <div
                       style={{
-                        width: 40,
-                        height: 36,
+                        width: 32,
+                        height: 28,
                         flexShrink: 0,
                         backgroundColor: "#F0F0F0",
                       }}
@@ -155,11 +160,13 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                     style={{
                       fontFamily: "'Barlow', system-ui, sans-serif",
                       fontWeight: 600,
-                      fontSize: 14,
+                      fontSize: 11,
                       textTransform: "uppercase",
-                      letterSpacing: "0.02em",
+                      letterSpacing: "0.01em",
                       color: isMumbai ? "#C8102E" : "#1A1A1A",
                       whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
                     }}
                   >
                     {entry.teamName}
@@ -171,7 +178,7 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                   style={{
                     fontFamily: "'Barlow', system-ui, sans-serif",
                     fontWeight: 400,
-                    fontSize: 14,
+                    fontSize: 11,
                     color: "#1A1A1A",
                     textAlign: "center",
                   }}
@@ -184,7 +191,7 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                   style={{
                     fontFamily: "'Barlow', system-ui, sans-serif",
                     fontWeight: 400,
-                    fontSize: 14,
+                    fontSize: 11,
                     color: "#1A1A1A",
                     textAlign: "center",
                   }}
@@ -197,7 +204,7 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                   style={{
                     fontFamily: "'Barlow', system-ui, sans-serif",
                     fontWeight: 400,
-                    fontSize: 14,
+                    fontSize: 11,
                     color: sdColor,
                     textAlign: "center",
                   }}
@@ -210,7 +217,7 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                   style={{
                     fontFamily: "'Barlow', system-ui, sans-serif",
                     fontWeight: 400,
-                    fontSize: 14,
+                    fontSize: 11,
                     color: "#1A1A1A",
                     textAlign: "center",
                   }}
@@ -223,7 +230,7 @@ export default function StandingsTable({ entries }: StandingsTableProps) {
                   style={{
                     fontFamily: "'Barlow Condensed', system-ui, sans-serif",
                     fontWeight: 700,
-                    fontSize: 18,
+                    fontSize: 13,
                     color: "#1A3A6B",
                     textAlign: "center",
                   }}
