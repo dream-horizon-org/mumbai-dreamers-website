@@ -79,7 +79,7 @@ export default function InstagramStrip({ posts }: InstagramStripProps) {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
             gap: 24,
           }}
         >
@@ -189,7 +189,7 @@ function PostCard({ imageSrc, caption, date, href }: PostCardProps) {
         </div>
 
         {/* Caption + date */}
-        <div style={{ padding: "14px 16px" }}>
+        <div style={{ padding: "14px 16px", minHeight: 92, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <p
             style={{
               fontFamily: "'Barlow', system-ui, sans-serif",

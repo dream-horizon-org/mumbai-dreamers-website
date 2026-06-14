@@ -97,6 +97,7 @@ function SponsorPill({ label, href, scrolled }: { label: string; href?: string; 
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -105,6 +106,10 @@ export default function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   const textColor = scrolled ? "#1A1A1A" : "#FFFFFF";
   const dividerColor = scrolled ? "rgba(26,26,26,0.3)" : "rgba(255,255,255,0.3)";
@@ -137,12 +142,16 @@ export default function Nav() {
           {/* Mobile hamburger sits in col 1 on small screens */}
           <button
             type="button"
-            aria-label="Open menu"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             className="lg:hidden ml-auto"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
               color: textColor,
               transition: "color 0.3s ease-out",
               padding: 4,
+              background: "none",
+              border: "none",
+              cursor: "pointer",
             }}
           >
             <HamburgerIcon color={textColor} />
@@ -225,6 +234,48 @@ export default function Nav() {
           </div>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div
+          className="lg:hidden fixed left-0 right-0 z-40 w-full"
+          style={{
+            top: 62 + 3,
+            backgroundColor: scrolled ? "#FFFFFF" : "#1A3A6B",
+            borderBottom: "1px solid #DDDDDD",
+            paddingTop: 12,
+            paddingBottom: 12,
+          }}
+        >
+          <div className="mx-auto max-w-[1280px] px-6">
+            <ul className="flex flex-col gap-3">
+              {NAV_LINKS.map((link) => {
+                const isActive =
+                  link.href === "/"
+                    ? pathname === "/"
+                    : pathname === link.href || pathname.startsWith(link.href + "/");
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="font-barlow font-semibold uppercase block py-2 transition-colors duration-200"
+                      style={{
+                        fontSize: 13,
+                        letterSpacing: "0.08em",
+                        color: isActive ? "#C8102E" : scrolled ? "#1A1A1A" : "#FFFFFF",
+                        paddingBottom: 4,
+                        borderBottom: isActive ? "2px solid #C8102E" : "2px solid transparent",
+                      }}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
